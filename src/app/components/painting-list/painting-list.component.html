@@ -1,0 +1,17 @@
+<div *ngIf="!selectedPainting">
+  <h1>Painting Gallery</h1>
+  <div *ngFor="let painting of paintings" class="thumbnail">
+    <img [src]="painting.imageUrl" [alt]="painting.title" (click)="selectPainting(painting)" />
+    <h2>{{ painting.title }}</h2>
+  </div>
+</div>
+
+<div *ngIf="selectedPainting" class="full-size">
+  <button (click)="clearSelection()">Back to Gallery</button>
+  <h1>{{ selectedPainting.title }}</h1>
+  <img [src]="selectedPainting.imageUrl" [alt]="selectedPainting.title" />
+  <p><strong>Year:</strong> {{ selectedPainting.year | yearFormat }}</p>
+  <p><strong>Artist:</strong> {{ selectedPainting.artist | authorFormat }}</p>
+  <p><strong>Dimensions:</strong> {{ selectedPainting.dimensions | sizeFormat }}</p>
+  <p><strong>Location:</strong> {{ selectedPainting.location }}</p>
+</div>
